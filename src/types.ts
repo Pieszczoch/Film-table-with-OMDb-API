@@ -14,14 +14,18 @@ export type Pagination<T> = {
   hasNextPage: boolean;
 };
 
-export type MoviesTable = {
-  title: string;
-  year: string;
-  rated: string;
-  released: string;
-  genre: string;
-  country: string;
-};
+export type MovieTable =
+  | {
+      Response: 'True';
+      Title: string;
+      Year: string;
+      Country: string;
+      Type: string;
+    }
+  | {
+      Response: 'False';
+      Error: string;
+    };
 
 export type MoviesTableQueryParams = {
   type?: string;

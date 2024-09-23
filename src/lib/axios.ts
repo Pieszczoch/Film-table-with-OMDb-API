@@ -4,11 +4,8 @@ import { showNotification } from '@mantine/notifications';
 import { API_URL } from '@/consts';
 
 const axios = Axios.create({
-  baseURL: `${API_URL}/api`,
-  headers: {
-    'X-Requested-With': 'XMLHttpRequest',
-  },
-  withCredentials: true,
+  baseURL: `${API_URL}`,
+  withCredentials: false,
   paramsSerializer: (params: Record<string, unknown>) => {
     return qs.stringify(params, { arrayFormat: 'brackets' });
   },

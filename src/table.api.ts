@@ -1,11 +1,11 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { axios } from '@/lib/axios';
 import { ONE_MINUTE_MS } from './consts';
-import { MoviesTable, MoviesTableQueryParams, Pagination, QueryContext } from './types';
+import { MoviesTableQueryParams, MovieTable, QueryContext } from './types';
 
 const moviesKeyFactory = {
   all: [{ scope: 'folders' }],
-  getByParams: (params: MoviesTableQueryParams) => [
+  getByParams: (params?: MoviesTableQueryParams) => [
     {
       ...moviesKeyFactory.all[0],
       params,
@@ -16,7 +16,7 @@ const moviesKeyFactory = {
 const getMovies = async ({
   queryKey: [{ params }],
 }: QueryContext<typeof moviesKeyFactory, 'getByParams'>) => {
-  return axios.get<Pagination<MoviesTable>>('', { params }).then((res) => res.data);
+  return axios.get<MovieTable>('', { params }).then((res) => res.data);
 };
 
 export const useMoviesQuery = ({ params }: { params: MoviesTableQueryParams }) => {
